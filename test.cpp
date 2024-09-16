@@ -15,3 +15,5 @@ int main(int ac, char **av) {
 	std::cout << "tlap root(" << x << ", " << y << ") = " << tlap::root(x, y) << std::endl;
 	return 0;
 }
+
+// g++ .\test.cpp -O2 -march=native -std=c++17 -Wall -Wextra -Werror -o test

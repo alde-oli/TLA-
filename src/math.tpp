@@ -8,6 +8,7 @@
 #include <type_traits>
 #include "../inc/hyperp.hpp"
 
+
 namespace tlap {
 
 // Vérification si T est un flottant
@@ -124,7 +125,7 @@ template <typename T>
 EnableIfFloatingPoint<T>	log(T x, int base) {
 	if (x <= 0 || base <= 0 || base == 1)
 		return std::numeric_limits<T>::quiet_NaN();;
-	return tlap::ln(x) / tlap::ln(static_cast<T>(floatBase));
+	return tlap::ln(x) / tlap::ln(static_cast<T>(base));
 }
 
 
@@ -260,7 +261,7 @@ EnableIfFloatingPoint<T>	asin(T x) {
 	T	x_squared = x * x;
 	int	n = 1;
 
-	while (tlap::abs(term) > EPSILON) {
+	while (tlap::abs(term) > EPSILON && n < MAX_RECURSION) {
 		term *= x_squared * (2 * n - 1) / (2 * n);
 		result += term / (2 * n + 1);
 		n++;
@@ -280,12 +281,20 @@ EnableIfFloatingPoint<T>	acos(T x) {
 
 template <typename T>
 EnableIfFloatingPoint<T>	atan(T x) {
+	if (tlap::abs(x) > 1) {
+		if (x > 1)
+			return PI / 2 - tlap::atan(1 / x);
+		else
+			return -PI / 2 - tlap::atan(1 / x);
+	}
+
+
 	T	result = x;
 	T	term = x;
 	T	x_squared = x * x;
 	int	n = 1;
 
-	while (tlap::abs(term) > EPSILON) {
+	while (tlap::abs(term) > EPSILON && n < MAX_RECURSION) {
 		term *= -x_squared;
 		result += term / (2 * n + 1);
 		n++;
@@ -295,17 +304,18 @@ EnableIfFloatingPoint<T>	atan(T x) {
 
 template <typename T>
 EnableIfFloatingPoint<T>	atan2(T y, T x) {
-	if (x > 0)
-		return tlap::atan(y / x);
-	else if (x < 0 && y >= 0)
-		return tlap::atan(y / x) + PI;
-	else if (x < 0 && y < 0)
-		return tlap::atan(y / x) - PI;
-	else if (x == 0 && y > 0)
-		return PI / 2;
-	else if (x == 0 && y < 0)
-		return -PI / 2;
-	throw std::invalid_argument("atan2() is undefined for both x and y being zero.");
+	if (x == 0) {
+		if (y == 0)
+			throw std::invalid_argument("atan2(0, 0) is undefined.");
+		return (y > 0 ? PI / 2 : -PI / 2);
+	}
+	else if (y == 0)
+		return (x > 0 ? 0 : PI);
+
+	T	result = tlap::atan(y / x);
+	if (x < 0)
+		result += (y >= 0 ? PI : -PI);
+	return result;
 }
 
 
@@ -324,10 +334,15 @@ EnableIfFloatingPoint<T>	cosh(T x) {
 
 template <typename T>
 EnableIfFloatingPoint<T>	tanh(T x) {
-	const T	exp_x = tlap::exp(x);
-
-	if (tlap::abs(cosh_value) < EPSILON)
-		throw std::overflow_error("Tanh undefined (cosh(x) is too close to 0).");
+	T	exp_x = tlap::exp(x);
+	T	exp_minus_x = tlap::exp(-x);
+	if (exp_x == std::numeric_limits<T>::infinity())
+		return 1;
+	else if (exp_minus_x == std::numeric_limits<T>::infinity())
+		return -1;
+	if (exp_x + exp_minus_x == 0)
+		throw std::overflow_error("Tanh undefined (exp(x) + exp(-x) is too close to 0).");
+	return (exp_x - exp_minus_x) / (exp_x + exp_minus_x);
 }
 
 
@@ -390,7 +405,7 @@ EnableIfIntegral<T>	factorial(T n) {
 			result *= i;
 		return result;
 	}
-	return static_cast<T>(std::sqrt(2 * PI * n) * std::pow(n / E, n));
+	return static_cast<T>(tlap::sqrt(2 * PI * n) * tlap::pow(n / E, n));
 }
 
 

@@ -6,13 +6,13 @@
 # define PI 3.14159265358979323846
 # define E 2.71828182845904523536
 # define PHI 1.61803398874989484820
-# define EPSILON std::numeric_limits<double>::epsilon()
+# define EPSILON 1e-10
 # define LN2 0.69314718055994530942
 # define LN10 2.30258509299404568402
 # define EXP_LIMIT 709
 # define EXP_TERMS 50
 # define LN_TERMS 50
 # define FACTORIAL_SWITCH 20
-# define MAX_RECURSION 1000
+# define MAX_RECURSION 5000
 
 #endif

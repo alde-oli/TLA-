@@ -67,11 +67,11 @@ namespace tlap {
 
 	// rounding
 	template <typename T>
-	T							floor(T x);
+	EnableIfFloatingPoint<T>	floor(T x);
 	template <typename T>
-	T							ceil(T x);
+	EnableIfFloatingPoint<T>	ceil(T x);
 	template <typename T>
-	T							round(T x);
+	EnableIfFloatingPoint<T>	round(T x);
 
 	// other
 	template <typename T>

@@ -48,6 +48,25 @@
 		"xmemory": "c",
 		"xstring": "c",
 		"xtr1common": "c",
-		"xutility": "c"
+		"xutility": "c",
+		"string": "cpp",
+		"ranges": "cpp",
+		"array": "cpp",
+		"*.tcc": "cpp",
+		"cstdarg": "cpp",
+		"cwctype": "cpp",
+		"deque": "cpp",
+		"list": "cpp",
+		"unordered_map": "cpp",
+		"vector": "cpp",
+		"algorithm": "cpp",
+		"functional": "cpp",
+		"memory_resource": "cpp",
+		"numeric": "cpp",
+		"optional": "cpp",
+		"random": "cpp",
+		"string_view": "cpp",
+		"numbers": "cpp",
+		"span": "cpp"
 	}
 }

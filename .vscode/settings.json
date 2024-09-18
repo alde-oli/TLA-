@@ -67,6 +67,15 @@
 		"random": "cpp",
 		"string_view": "cpp",
 		"numbers": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"chrono": "cpp",
+		"forward_list": "cpp",
+		"iomanip": "cpp",
+		"ratio": "cpp",
+		"sstream": "cpp",
+		"xhash": "cpp",
+		"hyperp.hpp": "c",
+		"map": "cpp",
+		"xtree": "cpp"
 	}
 }

@@ -1,7 +1,7 @@
 // Author: alde-oli, date: 15/09/2024
 // Description: Math functions with a focus on performance
 // File version: 0.1
-#include "hyperp.hpp"
+#include "../hyperp.hpp"
 #include <type_traits>
 
 template<typename T>
@@ -88,4 +88,4 @@ namespace tlap {
 	T							clamp(T x, T min, T max);
 }
 
-#include "../src/math.tpp"
+#include "math.tpp"

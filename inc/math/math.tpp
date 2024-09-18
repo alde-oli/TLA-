@@ -6,8 +6,8 @@
 #include <stdexcept>
 #include <limits>
 #include <type_traits>
-#include "../inc/hyperp.hpp"
-
+#include "math.hpp"
+#include "../hyperp.hpp"
 
 namespace tlap {
 
@@ -277,6 +277,8 @@ EnableIfFloatingPoint<T>	acos(T x) {
 
 	return PI / 2 - tlap::asin(x);
 }
+
+
 
 
 template <typename T>

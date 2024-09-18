@@ -13,6 +13,7 @@
 # define EXP_TERMS 50
 # define LN_TERMS 50
 # define FACTORIAL_SWITCH 20
-# define MAX_RECURSION 5000
+# define MAX_RECURSION 50000
+# define SIMD_THRESHOLD 128
 
 #endif

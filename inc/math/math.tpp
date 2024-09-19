@@ -6,34 +6,15 @@
 #include <stdexcept>
 #include <limits>
 #include <type_traits>
+#include <cmath>
 #include "math.hpp"
 #include "../hyperp.hpp"
 
 namespace tlap {
 
-// Vérification si T est un flottant
-template <typename T>
-T							pow(T x, int n) {
-	if (n == 0)
-		return 1;
-
-	T		result = 1;
-	bool	negative = n < 0;
-
-	if (negative)
-		n = -n;
-	while (n > 0) {
-		if (n % 2 == 1)
-			result *= x;
-		x *= x;
-		n /= 2;
-	}
-	return (negative ? 1 / result : result);
-}
-
-
-template <typename T>
-EnableIfFloatingPoint<T>	pow(T x, T n) {
+// power
+template <typename T> // complexity O(n)
+T							pow(T x, T n) {
 	if (n == 0)
 		return 1;
 	else if (x == 0) {
@@ -44,6 +25,18 @@ EnableIfFloatingPoint<T>	pow(T x, T n) {
 	}
 	else if (x < 0 && tlap::floor(n) != n)
 		throw std::invalid_argument("Negative base with non-integer exponent is undefined in real numbers.");
+	else if (n == 1)
+		return x;
+	else if (n == 2)
+		return x * x;
+	else if (n == 0.5)
+		return tlap::sqrt(x);
+	else if (n == -0.5)
+		return 1 / tlap::sqrt(x);
+	else if (n == -1)
+		return 1 / x;
+	else if (n < 0)
+		return 1 / tlap::pow(x, -n);
 	return (tlap::exp(n * tlap::ln(x)));
 }
 

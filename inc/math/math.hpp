@@ -12,9 +12,7 @@ using EnableIfIntegral = typename std::enable_if<std::is_integral<T>::value, T>:
 namespace tlap {
 	// power
 	template <typename T>
-	T							pow(T x, int n);
-	template <typename T>
-	EnableIfFloatingPoint<T>	pow(T x, T n);
+	T							pow(T x, T n);
 
 	// exp and log
 	template <typename T>

@@ -1,6 +1,8 @@
 {
 	"files.associations": {
-		"*.tpp": "c",
+		"*.tpp": "cpp",
+		"*.ipp": "cpp",
+		"*.hpp": "cpp",
 		"limits": "c",
 		"xlocale": "c",
 		"atomic": "c",

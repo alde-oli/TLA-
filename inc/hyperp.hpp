@@ -1,5 +1,4 @@
-#ifndef HYPERP_HPP
-# define HYPERP_HPP
+#pragma once
 
 # include <limits>
 
@@ -15,5 +14,3 @@
 # define FACTORIAL_SWITCH 20
 # define MAX_RECURSION 50000
 # define SIMD_THRESHOLD 128
-
-#endif

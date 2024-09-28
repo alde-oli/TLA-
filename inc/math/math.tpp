@@ -33,7 +33,7 @@ T_ARITHMETIC	pow(T x, int n) {
     return result;
 }
 
-T_ARITHMETIC<T> pow(T x, T n) {
+T_ARITHMETIC	 pow(T x, T n) {
     if (n == 0) return 1;
     if (x == 0) {
         if (n > 0) return 0;

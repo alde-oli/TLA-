@@ -7,6 +7,7 @@
 #include "math.hpp"
 #include "../hyperp.hpp"
 
+
 namespace tlap {
 
 // power
@@ -33,6 +34,8 @@ T_ARITHMETIC	pow(T x, int n) {
     return result;
 }
 
+//70 chaussures-chaussettes decathlon + 90 chf nouvelles chaussures + 50 euros maillots de bain et tongues intersport + 110 chf manger
+
 T_ARITHMETIC	 pow(T x, T n) {
     if (n == 0) return 1;
     if (x == 0) {
@@ -49,6 +52,7 @@ T_ARITHMETIC	 pow(T x, T n) {
     if (n == -1) return 1 / x;
     return tlap::exp(n * tlap::ln(x));
 }
+
 
 // exp and log
 T_FLOAT			exp(T x) {

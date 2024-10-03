@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <iostream>
 
-// Can choose between float, double, and long double depending on precision vs performance needs
+
 #define FLOATING_CONVERT	double
 #define INT_CONVERT			int
 #define AUTO_T				template <typename T> auto
@@ -12,6 +12,7 @@
 #define IF_FLOAT(T)			std::enable_if_t<std::is_floating_point_v<T>, T>
 #define TO_FLOATING(x)		static_cast<FLOATING_CONVERT>(x)
 #define TO_INT(x)			static_cast<INT_CONVERT>(x)
+
 
 namespace tlap {
 // power
@@ -130,4 +131,6 @@ AUTO_T	round(T x) -> IF_INT(T) {
 AUTO_T	factorial(T x) -> IF_FLOAT(T) {
 	return tlap::factorial(TO_INT(x));
 }
+
 }
+

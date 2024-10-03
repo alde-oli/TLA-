@@ -6,9 +6,9 @@
 #include "../hyperp.hpp"
 #include <concepts>
 
-#define T_FLOAT			template <std::floating_point T> T
-#define T_ARITHMETIC	template <typename T> T
-#define T_INT			template <std::integral T> T
+#define T_FLOAT			template <std::floating_point T> auto
+#define T_ARITHMETIC	template <typename T> auto
+#define T_INT			template <std::integral T> auto
 
 namespace	tlap {
 	// power
